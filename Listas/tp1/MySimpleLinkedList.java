@@ -72,5 +72,4 @@ public class MySimpleLinkedList<T> {
         return result;
     }
 	
-	
 }
