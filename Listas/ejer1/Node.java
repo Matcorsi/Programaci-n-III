@@ -1,4 +1,4 @@
-package Listas.tp1;
+package Listas.ejer1;
 
 public class Node<T> {
 

@@ -1,6 +1,8 @@
-package Listas.tp1;
+package Listas.ejer1;
 
-public class MySimpleLinkedList<T> {
+import java.util.Iterator;
+
+public class MySimpleLinkedList<T> implements Iterable<T>{
 	
 	private Node<T> first;
 	private int size;
@@ -54,6 +56,28 @@ public class MySimpleLinkedList<T> {
     public int size() {
         return this.size;
     }
+
+    public int indexOf(T data){
+        Node<T> current = first;
+        int index = 0;
+
+        while(current != null){
+            if (current.getInfo().equals(data)) {
+                return index;
+            }
+            current = current.getNext();
+            index++;
+        }
+        return -1;
+    }
+
+    public void iterarLista(){
+        Node<T> current = first;
+        while(current != null){
+            System.out.println(current.getInfo());
+            current = current.getNext(); 
+        }
+    }
     
     @Override
     public String toString() {
@@ -70,6 +94,25 @@ public class MySimpleLinkedList<T> {
         
         result += "]";
         return result;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            private Node<T> current = first;
+
+            @Override
+            public boolean hasNext() {
+                return current != null;
+            }
+
+            @Override
+            public T next() {
+                T data = current.getInfo();
+                current = current.getNext();
+                return data;
+            }
+        };
     }
 	
 }
