@@ -10,8 +10,17 @@ import Listas.ejer1.Node;
 public class ejer3 {
 
     public int indexOf(T data){
-        Node<T> current = new Node<>();
-        current.data = data;
+        Node<T> current = first;
+        int index = 0;
+
+        while(current != null){
+            if (current.getInfo().equals(data)) {
+                return index;
+            }
+            current = current.getNext();
+            index++;
+        }
+        return -1;
     }
 
 }

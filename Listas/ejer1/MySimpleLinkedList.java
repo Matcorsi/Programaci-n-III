@@ -11,6 +11,61 @@ public class MySimpleLinkedList<T> implements Iterable<T>{
 		this.first = null;
 		this.size = 0;
 	}
+
+    public MySimpleLinkedList<T> nuevaLista(MySimpleLinkedList<T> list1, MySimpleLinkedList<T> list2){
+        MySimpleLinkedList<T> resultado = new MySimpleLinkedList<>();
+        Node<T> nodo = list1.first;
+        while(nodo != null){
+            Node<T> nodo2 = list2.first;
+            while(nodo2 != null){
+                if(nodo.getInfo().equals(nodo2.getInfo())){
+                    if(!resultado.contains(nodo2.getInfo())){
+                        resultado.insertFront(nodo2.getInfo());
+                    }
+                    break;
+                }
+                nodo2 = nodo2.getNext();
+            }
+            nodo = nodo.getNext();
+        }
+    
+        return resultado;
+    }
+
+    public MySimpleLinkedList<T> newLista(MySimpleLinkedList<T> list1, MySimpleLinkedList<T> list2){
+        MySimpleLinkedList<T> resultado = new MySimpleLinkedList<>();
+        Node<T> nodo = list1.first;
+        while(nodo != null){
+            Node<T> nodo2 = list2.first;
+            boolean esIgual = false;
+            while(nodo2 != null && !esIgual){
+                if(nodo.getInfo().equals(nodo2.getInfo())){
+                    esIgual = true;
+                } else {
+                    nodo2 = nodo2.getNext();
+                }
+            }
+            if(!esIgual && !resultado.contains(nodo.getInfo())){
+                resultado.insertFront(nodo.getInfo());
+            }
+            nodo = nodo.getNext();
+        }
+        return resultado;
+    }
+
+
+    public boolean contains(T dato) {
+        Node<T> actual = this.first;
+
+        while (actual != null) {
+            if (actual.getInfo().equals(dato)) {
+                return true;
+            }
+            actual = actual.getNext();
+        }
+
+        return false;
+    }
 	
 	public void insertFront(T info) {
 		Node<T> tmp = new Node<T>(info,null);
@@ -71,13 +126,6 @@ public class MySimpleLinkedList<T> implements Iterable<T>{
         return -1;
     }
 
-    public void iterarLista(){
-        Node<T> current = first;
-        while(current != null){
-            System.out.println(current.getInfo());
-            current = current.getNext(); 
-        }
-    }
     
     @Override
     public String toString() {
