@@ -41,3 +41,5 @@ public class ejer2 {
         return posIgual(arr, i + 1);
     } 
 }
+
+
